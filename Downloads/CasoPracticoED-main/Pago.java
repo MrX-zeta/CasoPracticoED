@@ -44,6 +44,7 @@ public class Pago {
                     System.out.println("El monto no puede ser negativo. Intente de nuevo: ");
                     montoP = sc.nextDouble();
                 }
+                sc.nextLine();
                 productos[i] = new Producto(nombreP, montoP);
                 montoTotal += montoP;
             }
