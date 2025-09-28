@@ -1,24 +1,24 @@
 public class Tarjeta extends Pago {
-    private Long noTarjeta;
+    private String noTarjeta;
     private String banco;
 
-    public Tarjeta(Long noTarjeta, String banco) {
+    public Tarjeta(String noTarjeta, String banco) {
         super();
         this.noTarjeta = noTarjeta;
         this.banco = banco;
     }
 
-    public Tarjeta(Long noTarjeta, String banco, Double monto) {
+    public Tarjeta(String noTarjeta, String banco, Double monto) {
         super(monto);
         this.noTarjeta = noTarjeta;
         this.banco = banco;
     }
 
-    public void setNoTarjeta(Long noTarjeta) {
+    public void setNoTarjeta(String noTarjeta) {
         this.noTarjeta = noTarjeta;
     }
     
-    public Long getNoTarjeta() {
+    public String getNoTarjeta() {
         return noTarjeta;
     }
 

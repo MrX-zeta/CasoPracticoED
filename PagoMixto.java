@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PagoMixto extends Pago {
@@ -37,20 +38,28 @@ public class PagoMixto extends Pago {
         try {
             System.out.println("Total a pagar: $" + this.getMonto());
 
-            Double montoMixto;
-            do {
-                System.out.println("Ingrese la cantidad a pagar con tarjeta (máximo $" + this.getMonto() + "): ");
-                montoMixto = sc.nextDouble();
-                sc.nextLine();
-                
-                if (montoMixto < 0) {
-                    System.out.println("El monto debe ser mayor a 0.");
-                } else if (montoMixto > this.getMonto()) {
-                    System.out.println("El monto con tarjeta no puede ser mayor al total a pagar.");
-                } else {
-                    break;
+            Double montoMixto = null;
+            boolean montoValido = false;
+            
+            while (!montoValido) {
+                try {
+                    System.out.println("Ingrese la cantidad a pagar con tarjeta (máximo $" + this.getMonto() + "): ");
+                    montoMixto = sc.nextDouble();
+                    sc.nextLine();
+                    
+                    if (montoMixto < 0) {
+                        System.out.println("El monto debe ser mayor o igual a 0. Intente de nuevo.");
+                    } else if (montoMixto > this.getMonto()) {
+                        System.out.println("El monto con tarjeta no puede ser mayor al total a pagar. Intente de nuevo.");
+                    } else {
+                        montoValido = true;
+                    }
+                    
+                } catch (InputMismatchException e) {
+                    System.out.println("Por favor, ingrese un número válido.");
+                    sc.nextLine();
                 }
-            } while (true);
+            }
             
             this.montoTarjeta = montoMixto;
             this.montoEfectivo = this.getMonto() - this.montoTarjeta;
@@ -60,8 +69,7 @@ public class PagoMixto extends Pago {
 
             if (this.montoTarjeta > 0) {
                 System.out.println("Ingrese su número de tarjeta: ");
-                Long noTarjeta = sc.nextLong();
-                sc.nextLine();
+                String noTarjeta = sc.nextLine();
                 
                 System.out.println("Ingrese el nombre del banco: ");
                 String banco = sc.nextLine();
