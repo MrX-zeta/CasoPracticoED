@@ -1,8 +1,8 @@
 public class Producto {
     private String nombre;
-    private Double monto;
+    private int monto;
 
-    public Producto(String nombre, Double monto){
+    public Producto(String nombre, int monto){
         this.nombre = nombre;
         this.monto = monto;
     }
@@ -10,7 +10,7 @@ public class Producto {
     public void setNombre(String nombre){this.nombre = nombre;}
     public String getNombre(){return nombre;}
 
-    public void setMonto(Double monto){this.monto = monto;}
-    public Double getMonto(){return monto;}
+    public void setMonto(int monto){this.monto = monto;}
+    public int getMonto(){return monto;}
 
 }

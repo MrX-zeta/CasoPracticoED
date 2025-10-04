@@ -9,7 +9,7 @@ public class Tarjeta extends Pago {
     }
 
     public Tarjeta(String noTarjeta, String banco, Double monto) {
-        super(monto);
+        super(monto.intValue());
         this.noTarjeta = noTarjeta;
         this.banco = banco;
     }

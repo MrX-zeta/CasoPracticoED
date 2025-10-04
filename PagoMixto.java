@@ -8,7 +8,7 @@ public class PagoMixto extends Pago {
     private Efectivo efectivo;
 
     public PagoMixto(Double monto) {
-        super(monto);
+        super(monto.intValue());
     }
 
     public Double getMontoTarjeta() {
@@ -79,7 +79,7 @@ public class PagoMixto extends Pago {
             }
 
             if (this.montoEfectivo > 0) {
-                this.efectivo = new Efectivo(this.montoEfectivo);
+                this.efectivo = new Efectivo(this.montoEfectivo.intValue());
                 System.out.println("Pago en efectivo procesado: $" + this.montoEfectivo);
             }
             

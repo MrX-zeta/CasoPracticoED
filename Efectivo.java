@@ -1,6 +1,6 @@
 public class Efectivo extends Pago {
     
-    public Efectivo(Double monto) {
+    public Efectivo(int monto) {
         super(monto);
     }
     

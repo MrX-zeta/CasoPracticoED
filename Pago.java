@@ -1,23 +1,29 @@
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Pago {
-    protected Double monto;
+    protected int monto;
 
     public Pago() {
-        this.monto = 0.0;
+        this.monto = 0;
     }
 
-    public Pago(Double monto) {
+    public Pago(int monto) {
         this.monto = monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(int monto) {
         this.monto = monto;
     }
     
-    public Double getMonto() {
+    public int getMonto() {
         return monto;
+    }
+
+    public int generarMonto(){
+        Random rand = new Random();
+        return rand.nextInt(9990);
     }
 
     public boolean procesarPago() {
@@ -52,32 +58,12 @@ public class Pago {
                 System.out.println("Ingrese el nombre del producto: ");
                 String nombreP = sc.nextLine();
 
-                Double montoP = null;
-                boolean montoValido = false;
-                
-                while (!montoValido) {
-                    try {
-                        System.out.println("Ingrese el monto del producto: ");
-                        montoP = sc.nextDouble();
-                        sc.nextLine();
-                        
-                        if (montoP < 0) {
-                            System.out.println("El monto no puede ser negativo. Intente de nuevo.");
-                        } else {
-                            montoValido = true;
-                        }
-                        
-                    } catch (InputMismatchException e) {
-                        System.out.println("Por favor, ingrese un número válido.");
-                        sc.nextLine();
-                    }
-                }
+                int montoP = generarMonto();
+                this.setMonto(generarMonto());
                 
                 productos[i] = new Producto(nombreP, montoP);
                 montoTotal += montoP;
             }
-
-            this.setMonto(montoTotal);
             
             System.out.println("\nTotal a pagar: $" + montoTotal);
             
@@ -110,11 +96,11 @@ public class Pago {
                                 String banco = sc.nextLine();
 
                                 Tarjeta tarjeta = new Tarjeta(NoTarjeta, banco);
-                                tarjeta.setMonto(montoTotal);
+                                tarjeta.setMonto(montoTotal.intValue());
                                 tarjeta.procesarPagoTarjeta();
                                 break;
                             case 2:
-                                Efectivo efectivo = new Efectivo(montoTotal);
+                                Efectivo efectivo = new Efectivo(montoTotal.intValue());
                                 efectivo.procesarPagoEfectivo();
                                 break;
                             case 3:
