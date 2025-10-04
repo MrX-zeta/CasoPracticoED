@@ -68,8 +68,12 @@ public class PagoMixto extends Pago {
             System.out.println("Monto en efectivo: $" + this.montoEfectivo);
 
             if (this.montoTarjeta > 0) {
-                System.out.println("Ingrese su número de tarjeta: ");
+                System.out.println("Ingrese su numero de tarjeta: ");
                 String noTarjeta = sc.nextLine();
+                while (noTarjeta.length() != 16) {
+                    System.out.println("El número debe tener exactamente 16 dígitos. Intente de nuevo: ");
+                    noTarjeta = sc.nextLine();
+                }
                 
                 System.out.println("Ingrese el nombre del banco: ");
                 String banco = sc.nextLine();
